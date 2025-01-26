@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Employees</h3>
+<ul class="list-group">
+    {% for employee in employees %}
+        <li class="list-group-item">
+            <a href="{% url 'employee_detail' employee.id %}">{{ employee.user.username }} - {{ employee.position }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

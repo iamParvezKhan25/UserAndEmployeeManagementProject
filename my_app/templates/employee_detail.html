@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Employee Detail</h2>
+
+    <!-- Show success or error messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <p><strong>Employee Name:</strong> {{ employee.user.username }}</p>
+    <p><strong>Position:</strong> {{ employee.position }}</p>
+    <p><strong>Salary:</strong> {{ employee.salary }}</p>
+    <p><strong>Joined At:</strong> {{ employee.created_at }}</p>
+
+    <h4>Update Manager</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-2">Update Manager</button>
+    </form>
+
+    <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger mt-3">Delete Employee</a>
+</div>
+{% endblock %}
